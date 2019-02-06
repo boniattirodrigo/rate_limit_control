@@ -1,8 +1,6 @@
-# RateLimitControl
+# Rate limit control
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rate_limit_control`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Take control of the rate limit of your actions. This gem is primarily designed to work with Redis, but you can adapt other key-value databases to work with it. It was inspired by this [post](https://medium.com/@pebneter/fast-and-simple-rate-limiting-with-ruby-on-rails-and-redis-68e76ba38ca4).
 
 ## Installation
 
@@ -22,7 +20,34 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Define the configurations of your actions:
+
+```
+action_config = {
+  action: 'rate_limit_example',
+  id: 'foobar',
+  allowed_requests: 5,
+  storage: Redis.new,
+  timeout: 30,
+}
+```
+
+You need to set your action as a block inside the rate limit control.
+```
+RateLimitControl::Create.call!(action_config) do
+  puts "This action will be suspended after the 5th execution"
+end
+```
+
+After the 5th execution, the next action will be blocked until the timeout ends up. All actions with the same configuration will be blocked during this time.
+
+## Action params
+
+* **action**: Action name;
+* **id**: Id of the action, the same action could be executed by different requesters;
+* **allowed_requests**: Number of requests allow to be executed during the timeout period;
+* **storage**: Key-value database instance;
+* **timeout**: Time in seconds to unblock actions;
 
 ## Development
 
