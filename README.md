@@ -32,9 +32,9 @@ action_config = {
 }
 ```
 
-You need to set your action as a block inside the rate limit control.
+You need to set your action as a block inside the rate limit control:
 ```
-RateLimitControl::Create.call!(action_config) do
+RateLimitControl.new(action_config) do
   puts "This action will be suspended after the 5th execution"
 end
 ```
