@@ -1,4 +1,5 @@
 # Rate limit control
+![CI Status](https://travis-ci.com/boniattirodrigo/rate_limit_control.svg?branch=master)
 
 Take control of the rate limit of your actions. This gem is primarily designed to work with Redis, but you can adapt other key-value databases to work with it. It was inspired by this [post](https://medium.com/@pebneter/fast-and-simple-rate-limiting-with-ruby-on-rails-and-redis-68e76ba38ca4).
 
