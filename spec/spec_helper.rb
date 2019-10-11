@@ -1,5 +1,6 @@
 require "bundler/setup"
 require "rate_limit_control"
+require "redis"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
