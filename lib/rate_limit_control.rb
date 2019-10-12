@@ -4,7 +4,7 @@ class RateLimitControl
   attr_reader :action, :allowed_requests, :session_counter, :storage, :timeout
 
   def initialize(configs)
-    @action = "locked_#{configs[:action]}_#{configs[:id]}_#{Time.now.to_s}"
+    @action = "locked_#{configs[:action]}_#{configs[:id]}"
     @allowed_requests = configs[:allowed_requests]
     @session_counter = "#{configs[:action]}_#{configs[:id]}"
     @storage = configs[:storage]
